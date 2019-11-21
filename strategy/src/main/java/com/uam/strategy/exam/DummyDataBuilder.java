@@ -33,7 +33,7 @@ public class DummyDataBuilder {
         questions.add(firstQuestion);
         questions.add(secondQuestion);
 
-        return new Exam(questions);
+        return new Exam(questions, new RegularExamEvaluationStrategy());
     }
 
     private FinishedExam buildFinishedExam(Exam exam, int numberOfCorrectAnswers) {
