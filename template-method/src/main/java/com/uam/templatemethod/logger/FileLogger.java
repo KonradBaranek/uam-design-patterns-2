@@ -8,29 +8,17 @@ import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.time.LocalDate;
 
-public class FileLogger implements Logger {
+public class FileLogger extends AbstractLogger {
 
-    private final String className;
+
 
     public FileLogger(String className) {
-        this.className = className;
+        super(className);
     }
+
 
     @Override
-    public void info(String text) {
-        log(format(text), Level.INFO);
-    }
-
-    @Override
-    public void error(String text) {
-        log(format(text), Level.ERROR);
-    }
-
-    private String format(String text) {
-        return Instant.now() + " [" + className + "]: " + text;
-    }
-
-    private void log(String text, Level level) {
+    public void log(String text, Level level) {
         String currentFileName = calculateCurrentFileName(level);
         Path pathToLogFile = Paths.get(currentFileName);
 
